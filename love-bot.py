@@ -29,7 +29,7 @@ print('connected to Twitter')
 class StreamListener(tweepy.StreamListener):
     tweet_counter = 0
     nkata = 0
-    total_predict = 325
+    total_predict = 0
     name = "Love Prediction"
     api.update_profile(name)
     
