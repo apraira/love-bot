@@ -1,1 +1,1 @@
-worker: python piku-bot.py
+worker: python love-bot.py
