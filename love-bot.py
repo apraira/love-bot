@@ -110,7 +110,7 @@ class StreamListener(tweepy.StreamListener):
                         fix = kata2 [StreamListener.nkata]
                         StreamListener.nkata = 0
                     
-                    time.sleep(20)
+                    time.sleep(60)
                     api.update_status("@" + status.user.screen_name + " " + fix, in_reply_to_status_id=status.id)
 
 
@@ -155,7 +155,7 @@ class StreamListener(tweepy.StreamListener):
                               str(StreamListener.tweet_counter))
             StreamListener.tweet_counter = 0
             print('Istirahat 3 Menit')
-            time.sleep(60*3)
+            time.sleep(60)
             print ("starting prediction again")
             
         
