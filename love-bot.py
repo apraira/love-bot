@@ -18,9 +18,6 @@ ACCESS_TOKEN_SECRET = environ['ACCESS_TOKEN_SECRET']
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
-# V2
-"""auth = tweepy.OAuthHandler("S9hbAHn4H5t8R6S3NTJ6B49YV", "KTjZgdPAJaeybGaf8W9yIOgnyn6yPy6R9AuxvkX8Ur92T2erOB")
-auth.set_access_token("1387765093556002830-7BjDgpPPXNxqIwSzAbDuvCiRpNNNq5", "S7ZnTZnIAVcs1vwTNEmNVFeu5blRiebuLr7G1hhrZxTLR")"""
 
 # Create API object
 api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
@@ -110,7 +107,10 @@ class StreamListener(tweepy.StreamListener):
                         fix = kata2 [StreamListener.nkata]
                         StreamListener.nkata = 0
                     
+
                     time.sleep(60)
+
+                   
                     api.update_status("@" + status.user.screen_name + " " + fix, in_reply_to_status_id=status.id)
 
 
