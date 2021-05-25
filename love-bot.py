@@ -144,7 +144,7 @@ class StreamListener(tweepy.StreamListener):
                     titel = "perfect"
 
                 StreamListener.titel_sebelum = titel
-                time.sleep(20)
+                time.sleep(60)
 
                    
                 api.update_status("@" + status.user.screen_name + " " + kata2, in_reply_to_status_id=status.id)
