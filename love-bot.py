@@ -58,180 +58,172 @@ class StreamListener(tweepy.StreamListener):
         
         #jika jumlah tweet yang di reply < 5
         
-        if StreamListener.tweet_counter < maks:
+        
             
-            #jika dia follow akun
-            if stats[0].followed_by == True:
+        #jika dia follow akun
+        if stats[0].followed_by == True:
 
-                if status.is_quote_status == True:
+            if status.is_quote_status == True:
                     
-                    print("> (is quoted)" + status.user.screen_name +
+                print("> (is quoted)" + status.user.screen_name +
                                ": " + status.text + " ( skipped )")
 
-                elif 'RT' in status.text:
+            elif 'RT' in status.text:
                     
-                    print("> (is retweeted)" + status.user.screen_name +
+                print("> (is retweeted)" + status.user.screen_name +
                                   ": " + status.text + " ( skipped )")
 
-                elif status.in_reply_to_status_id != None:
+            elif status.in_reply_to_status_id != None:
                     
-                    print("> (is replyied)" + status.user.screen_name +
+                print("> (is replyied)" + status.user.screen_name +
                                   ": " + status.text + " ( skipped )")
 
                 #kalo followers kurang dari 40
-                elif nfolls < 40:
+            elif nfolls < 40:
                     
-                    time.sleep(20)
-                    api.update_status("@" + status.user.screen_name + " " + 'Sorry, your followers must be more than 40.', in_reply_to_status_id=status.id)
-                    print(str(StreamListener.tweet_counter) + ". (less than 40 followers)" + status.user.screen_name +
+                time.sleep(20)
+                api.update_status("@" + status.user.screen_name + " " + 'Sorry, your followers must be more than 40.', in_reply_to_status_id=status.id)
+                print(str(StreamListener.tweet_counter) + ". (less than 40 followers)" + status.user.screen_name +
                                   ": " + status.text + " ( replied )")
 
-                elif 'count' in status.text.lower() or 'hitung' in status.text.lower():
-                    kata2= status.text.lower()
-                    ls = kata2.replace("@predictyourlove", "")
-                    ls = ls.split()
+            elif 'count' in status.text.lower() or 'hitung' in status.text.lower():
+                kata2= status.text.lower()
+                ls = kata2.replace("@predictyourlove", "")
+                ls = ls.split()
  
-                    matches = [match for match in ls if "@" in match]
+                matches = [match for match in ls if "@" in match]
  
-                    unem = matches[0].replace("@", "")
+                unem = matches[0].replace("@", "")
 
-                    angka = random.randint(1, 100)
+                angka = random.randint(1, 100)
 
-                    if StreamListener.titel_sebelum == "sad":
-                        angka = random.randint(16, 100)
-                    elif StreamListener.titel_sebelum == "not enough":
-                        angka = random.randint(31, 100)
-                    elif StreamListener.titel_sebelum == "lovey":
-                        angka = random.randint(51, 100)
-                    elif StreamListener.titel_sebelum == "slow":
-                        angka = random.randint(66, 100)
-                    elif StreamListener.titel_sebelum == "goodenough":
-                        angka = random.randint(96, 100)
-                    elif StreamListener.titel_sebelum == "perfect":
-                        angka = random.randint(0, 15)
-                    else:
-                        angka = angka
+                if StreamListener.titel_sebelum == "sad":
+                    angka = random.randint(16, 100)
+                elif StreamListener.titel_sebelum == "not enough":
+                    angka = random.randint(31, 100)
+                elif StreamListener.titel_sebelum == "lovey":
+                    angka = random.randint(51, 100)
+                elif StreamListener.titel_sebelum == "slow":
+                    angka = random.randint(66, 100)
+                elif StreamListener.titel_sebelum == "goodenough":
+                    angka = random.randint(96, 100)
+                elif StreamListener.titel_sebelum == "perfect":
+                    angka = random.randint(0, 15)
+                else:
+                     angka = angka
 
-                    ang = str(angka) +"%"
+                ang = str(angka) +"%"
                     
-                    if angka > 0 and angka < 16:
-                        kata2 = "Your score with @/ "+unem + ": " + ang + ". Sorry, but your love is as likely to bear fruit as a mango tree planted on an Antarctic glacier."
+                if angka > 0 and angka < 16:
+                    kata2 = "Your score with @/ "+unem + ": " + ang + ". Sorry, but your love is as likely to bear fruit as a mango tree planted on an Antarctic glacier."
                         
-                        titel = "sad"
+                    titel = "sad"
                     
-                    elif angka > 15 and angka < 31:
-                        kata2 = "Your score with @/ "+unem + ": " + ang + ". Your love is as strong as the love between most children and their vegetables – insubstantial."
+                elif angka > 15 and angka < 31:
+                    kata2 = "Your score with @/ "+unem + ": " + ang + ". Your love is as strong as the love between most children and their vegetables – insubstantial."
                         
-                        titel = "not enough"
+                    titel = "not enough"
 
-                    elif angka > 30 and angka < 51:
-                        kata2 = "Your score with @/ "+unem + ": " + ang + ". Love like this can be seen in the eyes of a dog wanting to continue playing fetch with its exhausted owner – longing, yet not currently viable."
+                elif angka > 30 and angka < 51:
+                    kata2 = "Your score with @/ "+unem + ": " + ang + ". Love like this can be seen in the eyes of a dog wanting to continue playing fetch with its exhausted owner – longing, yet not currently viable."
                                               
-                        titel = "lovey"
+                    titel = "lovey"
 
-                    elif angka > 50 and angka < 66:
-                        kata2 = "Your score with @/ "+unem + ": " + ang +  ". Your love is comparable to rush hour traffic. Slow and frustrating, but possible to navigate through persistence and sheer force of will."
+                elif angka > 50 and angka < 66:
+                    kata2 = "Your score with @/ "+unem + ": " + ang +  ". Your love is comparable to rush hour traffic. Slow and frustrating, but possible to navigate through persistence and sheer force of will."
                         
-                        titel = "slow"
+                    titel = "slow"
 
-                    elif angka > 65 and angka < 96:
-                        kata2 = "Your score with @/ "+unem + ": " + ang + ". Good enough. Might as well check love off your list of things society believes you should've accomplished by now."
+                elif angka > 65 and angka < 96:
+                    kata2 = "Your score with @/ "+unem + ": " + ang + ". Good enough. Might as well check love off your list of things society believes you should've accomplished by now."
                         
-                        titel = "goodenough"
+                    titel = "goodenough"
 
-                    elif angka > 95 and angka < 101:
-                        kata2 = "Your score: " + ang + ", Congratulations you and @/" + unem + " are made to spend your lives together."                        
-                        titel = "perfect"
+                elif angka > 95 and angka < 101:
+                    kata2 = "Your score: " + ang + ", Congratulations you and @/" + unem + " are made to spend your lives together."                        
+                    titel = "perfect"
 
-                    StreamListener.titel_sebelum = titel
-                    time.sleep(60)
+                StreamListener.titel_sebelum = titel
+                time.sleep(20)
 
                    
-                    api.update_status("@" + status.user.screen_name + " " + kata2, in_reply_to_status_id=status.id)
-                    StreamListener.tweet_counter += 1
-                    StreamListener.total_predict += 1
+                api.update_status("@" + status.user.screen_name + " " + kata2, in_reply_to_status_id=status.id)
+                StreamListener.tweet_counter += 1
+                StreamListener.total_predict += 1
 
-                    #logs
-                    print(str(StreamListener.tweet_counter) + ".  " +
-                    status.user.screen_name + ": " + status.text + " ( replied )")
-
-                    
-
+                #logs
+                print(str(StreamListener.tweet_counter) + ".  " +
+                status.user.screen_name + ": " + status.text + " ( replied )")
 
                     
 
-                else:
-                    #get list of user followers
-                    folls = api.followers(user_id=target_user_id, screen_name=target_user.screen_name, count=40)
-                    angka = random.randint(1,39)
 
-                    kata2 = ["Congratulations " + target_user.screen_name + ", your soulmate is " + folls[angka].name + " (@/" + folls[angka].screen_name +")",
+                    
+
+            else:
+                #get list of user followers
+                folls = api.followers(user_id=target_user_id, screen_name=target_user.screen_name, count=40)
+                angka = random.randint(1,39)
+
+                kata2 = ["Congratulations " + target_user.screen_name + ", your soulmate is " + folls[angka].name + " (@/" + folls[angka].screen_name +")",
                              "Fate brings people together, Congratulations " + target_user.screen_name + " & " + folls[angka].name + " (@/" + folls[angka].screen_name + ") maybe you guys are expected to be together",
                              "We don't meet people by accident. They are meant to cross our path. So does you & " +  folls[angka].name +  " (@/" + folls[angka].screen_name + "), Congratulations :)",
                              "The best love is unexpected. Congratulations! you meet " +folls[angka].name + " (@/" + folls[angka].screen_name + ") by fate. We hope there will be an instant connection.",
                              "When it's time for soul to meet, there's nothing on earth that can prevent them from meeting, Congratulations " + target_user.screen_name + " & " + folls[angka].name + " (@/" + folls[angka].screen_name + ")"]                           
                              
 
-                    #update status 
-                    fix = ""
+                #update status 
+                fix = ""
                     
-                    if StreamListener.nkata < 4:
-                        fix = kata2 [StreamListener.nkata]
-                        StreamListener.nkata += 1
-                    else:
-                        fix = kata2 [StreamListener.nkata]
-                        StreamListener.nkata = 0
+                if StreamListener.nkata < 4:
+                    fix = kata2 [StreamListener.nkata]
+                    StreamListener.nkata += 1
+                else:
+                    fix = kata2 [StreamListener.nkata]
+                    StreamListener.nkata = 0
                     
 
-                    time.sleep(60)
+                time.sleep(60)
 
                    
-                    api.update_status("@" + status.user.screen_name + " " + fix, in_reply_to_status_id=status.id)
+                api.update_status("@" + status.user.screen_name + " " + fix, in_reply_to_status_id=status.id)
 
 
-                    StreamListener.tweet_counter += 1
-                    StreamListener.total_predict += 1
+                StreamListener.tweet_counter += 1
+                StreamListener.total_predict += 1
 
-                    #logs
-                    print(str(StreamListener.tweet_counter) + ".  " +
-                    status.user.screen_name + ": " + status.text + " ( replied )")
+                #logs
+                print(str(StreamListener.tweet_counter) + ".  " +
+                status.user.screen_name + ": " + status.text + " ( replied )")
 
-            #Jika dia belom follow akun
-            else:
+        #Jika dia belom follow akun
+        else:
 
-                if status.is_quote_status == True:
+            if status.is_quote_status == True:
                     
-                    print("> (is quoted)" + status.user.screen_name +
+                print("> (is quoted)" + status.user.screen_name +
                                ": " + status.text + " ( skipped )")
 
-                elif 'RT' in status.text:
+            elif 'RT' in status.text:
                     
-                    print("> (is retweeted)" + status.user.screen_name +
+                print("> (is retweeted)" + status.user.screen_name +
                                   ": " + status.text + " ( skipped )")
 
-                elif status.in_reply_to_status_id != None:
+            elif status.in_reply_to_status_id != None:
                     
-                    print("> (is replyied)" + status.user.screen_name +
+                print("> (is replyied)" + status.user.screen_name +
                                   ": " + status.text + " ( skipped )")
 
                 #reply suruh follow dulu
-                else:
-                    time.sleep(20)
-                    api.update_status("@" + status.user.screen_name + " " + 'Please follow us first, then try again', in_reply_to_status_id=status.id)
+            else:
+                time.sleep(20)
+                api.update_status("@" + status.user.screen_name + " " + 'Please follow us first, then try again', in_reply_to_status_id=status.id)
                    
-                    print(">"  +
-                        status.user.screen_name + ": must follow first"  + " ( replied )") 
+                print(">"  +
+                    status.user.screen_name + ": must follow first"  + " ( replied )") 
             
             
-            
-        #jika jumlah tweet yang di reply > 5
-        else:
-            print('Max num reached = ' +
-                              str(StreamListener.tweet_counter))
-            StreamListener.tweet_counter = 0
-            print('Istirahat 3 Menit')
-            time.sleep(60)
-            print ("starting prediction again")
+        
             
         
         print('============================')
