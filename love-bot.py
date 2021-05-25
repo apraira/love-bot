@@ -29,6 +29,7 @@ class StreamListener(tweepy.StreamListener):
     total_predict = 0
     name = "Love Prediction"
     api.update_profile(name)
+    titel_sebelum = ""
     
     print('starting prediction')
     
@@ -84,6 +85,74 @@ class StreamListener(tweepy.StreamListener):
                     api.update_status("@" + status.user.screen_name + " " + 'Sorry, your followers must be more than 40.', in_reply_to_status_id=status.id)
                     print(str(StreamListener.tweet_counter) + ". (less than 40 followers)" + status.user.screen_name +
                                   ": " + status.text + " ( replied )")
+
+                elif 'count' in status.text.lower() or 'hitung' in status.text.lower():
+                    kata2= status.text.lower()
+                    ls = kata2.replace("@predictyourlove", "")
+                    ls = ls.split()
+ 
+                    matches = [match for match in ls if "@" in match]
+ 
+                    unem = matches[0].replace("@", "")
+
+                    angka = random.randint(1, 100)
+
+                    if StreamListener.titel_sebelum == "sad":
+                        angka = random.randint(16, 100)
+                    elif StreamListener.titel_sebelum == "not enough":
+                        angka = random.randint(31, 100)
+                    elif StreamListener.titel_sebelum == "lovey":
+                        angka = random.randint(51, 100)
+                    elif StreamListener.titel_sebelum == "slow":
+                        angka = random.randint(66, 100)
+                    elif StreamListener.titel_sebelum == "goodenough":
+                        angka = random.randint(96, 100)
+                    elif StreamListener.titel_sebelum == "perfect":
+                        angka = random.randint(0, 15)
+                    else:
+                        angka = angka
+
+                    ang = str(angka) +"%"
+                    
+                    if angka > 0 and angka < 16:
+                        kata2 = "Your score with @/ "+unem + ": " + ang + ". Sorry, but your love is as likely to bear fruit as a mango tree planted on an Antarctic glacier."
+                        
+                        titel = "sad"
+                    
+                    elif angka > 15 and angka < 31:
+                        kata2 = "Your score with @/ "+unem + ": " + ang + ". Your love is as strong as the love between most children and their vegetables – insubstantial."
+                        
+                        titel = "not enough"
+
+                    elif angka > 30 and angka < 51:
+                        kata2 = "Your score with @/ "+unem + ": " + ang + ". Love like this can be seen in the eyes of a dog wanting to continue playing fetch with its exhausted owner – longing, yet not currently viable."
+                                              
+                        titel = "lovey"
+
+                    elif angka > 50 and angka < 66:
+                        kata2 = "Your score with @/ "+unem + ": " + ang + "Good enough. Might as well check love off your list of things society believes you should've accomplished by now."
+                        
+                        titel = "slow"
+
+                    elif angka > 65 and angka < 96:
+                        kata2 = "Your score with @/ "+unem + ": " + ang + ". Your love is comparable to rush hour traffic. Slow and frustrating, but possible to navigate through persistence and sheer force of will."
+                        
+                        titel = "goodenough"
+
+                    elif angka > 95 and angka < 101:
+                        kata2 = "Your score: " + ang + ", Congratulations you and @/" + unem + " are made to spend your lives together."                        
+                        titel = "perfect"
+
+                    StreamListener.titel_sebelum = titel
+                    time.sleep(60)
+
+                   
+                    api.update_status("@" + status.user.screen_name + " " + kata2, in_reply_to_status_id=status.id)
+
+                    
+
+
+                    
 
                 else:
                     #get list of user followers
