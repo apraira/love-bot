@@ -130,7 +130,7 @@ class StreamListener(tweepy.StreamListener):
                         titel = "lovey"
 
                     elif angka > 50 and angka < 66:
-                        kata2 = "Your score with @/ "+unem + ": " + ang + "Good enough. Might as well check love off your list of things society believes you should've accomplished by now."
+                        kata2 = "Your score with @/ "+unem + ": " + ang + ". Good enough. Might as well check love off your list of things society believes you should've accomplished by now."
                         
                         titel = "slow"
 
@@ -148,6 +148,12 @@ class StreamListener(tweepy.StreamListener):
 
                    
                     api.update_status("@" + status.user.screen_name + " " + kata2, in_reply_to_status_id=status.id)
+                    StreamListener.tweet_counter += 1
+                    StreamListener.total_predict += 1
+
+                    #logs
+                    print(str(StreamListener.tweet_counter) + ".  " +
+                    status.user.screen_name + ": " + status.text + " ( replied )")
 
                     
 
