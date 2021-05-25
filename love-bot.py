@@ -130,12 +130,12 @@ class StreamListener(tweepy.StreamListener):
                         titel = "lovey"
 
                     elif angka > 50 and angka < 66:
-                        kata2 = "Your score with @/ "+unem + ": " + ang + ". Good enough. Might as well check love off your list of things society believes you should've accomplished by now."
+                        kata2 = "Your score with @/ "+unem + ": " + ang +  ". Your love is comparable to rush hour traffic. Slow and frustrating, but possible to navigate through persistence and sheer force of will."
                         
                         titel = "slow"
 
                     elif angka > 65 and angka < 96:
-                        kata2 = "Your score with @/ "+unem + ": " + ang + ". Your love is comparable to rush hour traffic. Slow and frustrating, but possible to navigate through persistence and sheer force of will."
+                        kata2 = "Your score with @/ "+unem + ": " + ang + ". Good enough. Might as well check love off your list of things society believes you should've accomplished by now."
                         
                         titel = "goodenough"
 
