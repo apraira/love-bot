@@ -1,1 +1,1 @@
-love bot on twitter @predictyourlove //
+love bot on twitter @predictyourlove
