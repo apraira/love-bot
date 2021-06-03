@@ -79,11 +79,11 @@ class StreamListener(tweepy.StreamListener):
                                   ": " + status.text + " ( skipped )")
 
                 #kalo followers kurang dari 40
-            elif nfolls < 40:
+            elif nfolls < 10:
                     
                 time.sleep(20)
-                api.update_status("@" + status.user.screen_name + " " + 'Sorry, your followers must be more than 40.', in_reply_to_status_id=status.id)
-                print(str(StreamListener.tweet_counter) + ". (less than 40 followers)" + status.user.screen_name +
+                api.update_status("@" + status.user.screen_name + " " + 'Sorry, your followers must be more than 10.', in_reply_to_status_id=status.id)
+                print(str(StreamListener.tweet_counter) + ". (less than 10 followers)" + status.user.screen_name +
                                   ": " + status.text + " ( replied )")
 
             elif 'count' in status.text.lower() or 'hitung' in status.text.lower():
@@ -162,8 +162,8 @@ class StreamListener(tweepy.StreamListener):
 
             else:
                 #get list of user followers
-                folls = api.followers(user_id=target_user_id, screen_name=target_user.screen_name, count=40)
-                angka = random.randint(1,39)
+                folls = api.followers(user_id=target_user_id, screen_name=target_user.screen_name, count=10)
+                angka = random.randint(1,9)
 
                 kata2 = ["Congratulations " + target_user.screen_name + ", your soulmate is " + folls[angka].name + " (@/" + folls[angka].screen_name +")",
                              "Fate brings people together, Congratulations " + target_user.screen_name + " & " + folls[angka].name + " (@/" + folls[angka].screen_name + ") maybe you guys are expected to be together",
