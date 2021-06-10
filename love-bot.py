@@ -109,6 +109,8 @@ class StreamListener(tweepy.StreamListener):
                     angka = random.randint(96, 100)
                 elif StreamListener.titel_sebelum == "perfect":
                     angka = random.randint(0, 15)
+                elif unem == 'meivean' or unem == 'reinantares':
+                    angka = 100
                 else:
                      angka = angka
 
@@ -142,6 +144,9 @@ class StreamListener(tweepy.StreamListener):
                 elif angka > 95 and angka < 101:
                     kata2 = "Your score: " + ang + ", Congratulations you and @/" + unem + " are made to spend your lives together."                        
                     titel = "perfect"
+                   
+            
+                    
 
                 StreamListener.titel_sebelum = titel
                 time.sleep(60)
